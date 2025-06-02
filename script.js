@@ -10,11 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
             body.classList.remove('light-mode');
             themeToggle.innerHTML = '<span class="emoji">🌙</span> Dark Mode';
             localStorage.setItem('theme', 'dark');
+            // GA4 Tracking: Theme changed to Dark Mode
+            gtag('event', 'theme_change', {
+                'theme_mode': 'dark_mode'
+            });
         } else {
             body.classList.add('light-mode');
             body.classList.remove('dark-mode');
             themeToggle.innerHTML = '<span class="emoji">🌞</span> Light Mode';
             localStorage.setItem('theme', 'light');
+            // GA4 Tracking: Theme changed to Light Mode
+            gtag('event', 'theme_change', {
+                'theme_mode': 'light_mode'
+            });
         }
     }
 
@@ -35,6 +43,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- "Join the Vibe" Button Click Tracking (Your New Code) ---
+    // Assuming this is the main CTA on your hero section
+    const joinButton = document.querySelector('#hero .genz-button'); // Target the button in the hero section
+    if (joinButton) {
+        joinButton.addEventListener('click', () => {
+            gtag('event', 'join_click', {
+                'page_section': 'Hero', // Dimension
+                'join_clicks': 1         // Metric
+            });
+        });
+    }
+
+
     // --- Contact Form Submission ---
     const contactForm = document.getElementById('contact-form');
     const formMessage = document.getElementById('form-message');
@@ -48,6 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
 
+        let formStatus = 'error'; // Default status
+
         if (!name || !email || !message) {
             formMessage.className = 'error'; // Set class directly
             formMessage.textContent = 'Oops! Please fill out all fields. 🙏';
@@ -58,15 +81,54 @@ document.addEventListener('DOMContentLoaded', () => {
             formMessage.className = 'success'; // Set class directly
             formMessage.textContent = 'Thanks for reaching out! We\'ll hit you back soon. 🔥';
             contactForm.reset(); // Clear the form
+            formStatus = 'success'; // Update status on success
         }
 
         formMessage.classList.remove('hidden'); // Ensure message is visible
+
+        // GA4 Tracking: Form Submission (Merged with your parameters)
+        gtag('event', 'form_submit', {
+            'page_section': 'Contact',           // Your dimension
+            'form_submission_status': formStatus, // My previous dimension
+            'form_submissions': 1                // Your metric (instead of my 'form_submissions_count')
+        });
+
 
         // Hide message after a few seconds
         setTimeout(() => {
             formMessage.classList.add('hidden');
         }, 5000);
     });
+
+    // --- File Download Tracking (Updated with your code) ---
+    const downloadLink = document.querySelector('a[download]'); // Targets any <a> tag with a download attribute
+    if (downloadLink) {
+        downloadLink.addEventListener('click', () => {
+            gtag('event', 'file_download', {
+                'page_section': 'Download', // Your dimension
+                'download_type': 'PDF',     // Your dimension
+                'file_downloads_count': 1   // Keep this as a general count metric
+            });
+        });
+    }
+
+    // --- Video Play Tracking (Basic) ---
+    const videoFrame = document.querySelector('#featured-video iframe');
+    if (videoFrame) {
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    gtag('event', 'video_view', {
+                        'video_title': 'HOW GEN Z brain works 🧠😂'
+                    });
+                    videoObserver.unobserve(entry.target); // Only track once per page load
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 50% of the video section is visible
+
+        videoObserver.observe(document.getElementById('featured-video'));
+    }
+
 
     // --- TARA VOICE ASSISTANT LOGIC ---
     const taraMicButton = document.getElementById('tara-mic-button');
@@ -170,20 +232,30 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Speech recognition error', event.error);
             taraMicButton.classList.remove('listening');
             taraMicButton.innerHTML = '<span class="emoji">🎤</span> Talk to Tara';
+            let commandStatus = 'fail'; // Default to fail
             if (event.error === 'no-speech') {
                 speak("Sorry, I didn't hear anything. Please try again.");
+                commandStatus = 'no_speech';
             } else if (event.error === 'not-allowed') {
                 speak("Permission to use the microphone was denied. Please allow microphone access in your browser settings to use voice commands.");
+                commandStatus = 'permission_denied';
             } else if (event.error === 'aborted' && alwaysListeningToggle.checked) {
-                 // This can happen if recognition stops itself in continuous mode
-                 // We want to restart if it's always listening
                  console.log("Recognition aborted in continuous mode, restarting...");
                  if (alwaysListeningToggle.checked) {
-                     recognition.start(); // Restart if in always-listening
+                     recognition.start();
                  }
+                 commandStatus = 'aborted'; // Special status for continuous mode restart
             } else {
                 speak(`I'm having trouble understanding. Error: ${event.error}.`);
+                commandStatus = 'error';
             }
+            // GA4 Tracking: Voice Command Error
+            gtag('event', 'voice_command', {
+                'command_type': 'error',
+                'command_status': commandStatus,
+                'voice_commands_count': 1 // Track failed attempts too
+            });
+
             setTimeout(() => {
                 taraResponseBox.classList.add('hidden');
                 taraResponseText.textContent = '';
@@ -193,10 +265,8 @@ document.addEventListener('DOMContentLoaded', () => {
         recognition.onend = () => {
             taraMicButton.classList.remove('listening');
             taraMicButton.innerHTML = '<span class="emoji">🎤</span> Talk to Tara';
-            // Only restart if in always-listening mode AND not currently speaking
             if (alwaysListeningToggle.checked && !synth.speaking) {
                 console.log("Recognition ended, restarting for always listening mode...");
-                // Add a small delay before restarting to prevent rapid restarts if an error occurs
                 setTimeout(() => {
                     recognition.start();
                 }, 100);
@@ -206,38 +276,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle voice commands
     function handleVoiceCommand(command) {
+        let commandType = 'unknown';
+        let commandStatus = 'not_understood';
+        let responseText = "I didn't quite catch that command. I can help with 'switch to dark mode', 'scroll to contact form', or 'play the video'.";
+
         if (command.includes('switch to dark mode')) {
+            commandType = 'theme_change';
             if (body.classList.contains('light-mode')) {
                 applyTheme('dark');
-                speak("Okay, switching to dark mode. Enjoy the chill vibes!");
+                responseText = "Okay, switching to dark mode. Enjoy the chill vibes!";
+                commandStatus = 'success';
             } else {
-                speak("We're already in dark mode, fam. Anything else?");
+                responseText = "We're already in dark mode, fam. Anything else?";
+                commandStatus = 'already_dark';
             }
         } else if (command.includes('switch to light mode')) {
+            commandType = 'theme_change';
             if (body.classList.contains('dark-mode')) {
                 applyTheme('light');
-                speak("Got it! Back to the bright side.");
+                responseText = "Got it! Back to the bright side.";
+                commandStatus = 'success';
             } else {
-                speak("You're already glowing in light mode!");
+                responseText = "You're already glowing in light mode!";
+                commandStatus = 'already_light';
             }
         } else if (command.includes('scroll to contact form') || command.includes('contact us')) {
+            commandType = 'scroll_action';
             document.getElementById('contact-form-section').scrollIntoView({ behavior: 'smooth' });
-            speak("Scrolling down to the contact form for you.");
+            responseText = "Scrolling down to the contact form for you.";
+            commandStatus = 'success';
         } else if (command.includes('play the video') || command.includes('play video')) {
+            commandType = 'video_action';
             const videoFrame = document.querySelector('#featured-video iframe');
             if (videoFrame) {
-                // Note: Autoplay might be blocked by browsers, but this is the intent.
-                speak("Attempting to play the video. If it doesn't start, please click on it, browser privacy rules can be tricky!");
+                responseText = "Attempting to play the video. If it doesn't start, please click on it, browser privacy rules can be tricky!";
+                commandStatus = 'success';
             } else {
-                speak("Hmm, I don't see a video here. Maybe it's on another page?");
+                responseText = "Hmm, I don't see a video here. Maybe it's on another page?";
+                commandStatus = 'video_not_found';
             }
         } else if (command.includes('hello tara') || command.includes('hey tara') || command.includes('hi tara')) {
-            speak("Hey there! How can I help you vibe today?");
+            commandType = 'greeting';
+            responseText = "Hey there! How can I help you vibe today?";
+            commandStatus = 'success';
         } else if (command.includes('thank you') || command.includes('thanks tara')) {
-            speak("You got it! Always here to help.");
-        } else {
-            speak("I didn't quite catch that command. I can help with 'switch to dark mode', 'scroll to contact form', or 'play the video'.");
+            commandType = 'gratitude';
+            responseText = "You got it! Always here to help.";
+            commandStatus = 'success';
         }
+
+        speak(responseText);
+
+        // GA4 Tracking: Voice Command Handled
+        gtag('event', 'voice_command', {
+            'command_type': commandType,
+            'command_status': commandStatus,
+            'voice_commands_count': 1 // Custom metric for every command attempt
+        });
     }
 
     // Event listener for mic button (Click-to-Talk)
