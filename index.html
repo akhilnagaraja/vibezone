@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeZone - Your Daily Dose of Awesome</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-E2BFH1MQ00');
+    </script>
+    </head>
+<body class="light-mode">
+    
+    <header>
+        <div class="container header-content">
+            <h1>VibeZone</h1>
+            <button id="theme-toggle" class="genz-button">
+                <span class="emoji">🌞</span> Light Mode
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="hero" class="vibe-section">
+            <div class="hero-text">
+                <h2>Level Up Your Day, Every Day.</h2>
+                <p>Dive into a world where good vibes are mandatory and boredom is canceled. ✨</p>
+                <button class="genz-button" onclick="document.getElementById('contact-form-section').scrollIntoView({ behavior: 'smooth' });">
+                    Join the Squad!
+                </button>
+            </div>
+           <div class="hero-animation">
+    <lottie-player 
+        src="https://assets2.lottiefiles.com/packages/lf20_tll0j4bb.json" 
+        background="transparent" 
+        speed="1" 
+        style="width: 300px; height: 300px;" 
+        loop 
+        autoplay>
+    </lottie-player>
+</div>
+
+
+        </section>
+
+        
+<section id="featured-video" class="vibe-section">
+    <h2>Our Latest Drop (Literally!)</h2>
+    <div class="video-container">
+        <iframe 
+            src="https://www.youtube.com/embed/0YF8vecQWYs" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+    <p class="video-caption">Warning: May cause spontaneous joy. Handle with care. 😜</p>
+</section>
+
+
+        <section id="download-stuff" class="vibe-section">
+            <h2>Need Some Digital Goodies?</h2>
+            <div class="file-attachment">
+                <p>Grab our exclusive "VibeCheck Starter Pack" – it's lit! 🔥</p>
+                <a href="sample-document.pdf" download="VibeCheck_Starter_Pack.pdf" class="genz-button">
+                    Download Now!
+                </a>
+                <p class="file-info">File size: 2.5 MB (PDF)</p>
+            </div>
+        </section>
+
+        <section id="contact-form-section" class="vibe-section">
+            <h2>Slide into Our DMs (aka, Contact Form)</h2>
+            <form id="contact-form" class="genz-form">
+                <div class="form-group">
+                    <label for="name">Your Gamer Tag:</label>
+                    <input type="text" id="name" name="name" placeholder="E.g., VibeMaster69" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email (no spam, pinky swear):</label>
+                    <input type="email" id="email" name="email" placeholder="E.g., inbox@vibezone.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">What's on your mind?</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell us your wildest dreams or just say hi! 🤙"></textarea>
+                </div>
+                <button type="submit" class="genz-button">
+                    Send It!
+                </button>
+            </form>
+            <div id="form-message" class="hidden"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 VibeZone. Stay vibin', fam. ✌️</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

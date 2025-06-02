@@ -1,0 +1,360 @@
+:root {
+    --light-bg: #f0f2f5;
+    --light-text: #333;
+    --light-primary: #8a2be2; /* Blue Violet */
+    --light-secondary: #00bcd4; /* Cyan */
+    --light-accent: #ff4081; /* Pink */
+    --light-card-bg: #fff;
+    --light-border: #ddd;
+
+    --dark-bg: #1a1a2e;
+    --dark-text: #e0e0e0;
+    --dark-primary: #9b59b6; /* Amethyst */
+    --dark-secondary: #00bcd4; /* Cyan */
+    --dark-accent: #e91e63; /* Deep Pink */
+    --dark-card-bg: #2e2e4e;
+    --dark-border: #444;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* A popular modern font */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light Mode Styles */
+body.light-mode {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+
+body.light-mode header,
+body.light-mode footer {
+    background-color: var(--light-card-bg);
+    border-bottom: 1px solid var(--light-border);
+}
+
+body.light-mode .vibe-section {
+    background-color: var(--light-card-bg);
+    border: 1px solid var(--light-border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .genz-button {
+    background-color: var(--light-primary);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 8px rgba(138, 43, 226, 0.3);
+}
+
+body.light-mode .genz-button:hover {
+    background-color: #7b24cc; /* Slightly darker primary */
+    box-shadow: 0 6px 12px rgba(138, 43, 226, 0.4);
+}
+
+body.light-mode .genz-form input,
+body.light-mode .genz-form textarea {
+    background-color: #f9f9f9;
+    border: 1px solid var(--light-border);
+    color: var(--light-text);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+    background-color: var(--dark-card-bg);
+    border-bottom: 1px solid var(--dark-border);
+}
+
+body.dark-mode .vibe-section {
+    background-color: var(--dark-card-bg);
+    border: 1px solid var(--dark-border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .genz-button {
+    background-color: var(--dark-primary);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 8px rgba(155, 89, 182, 0.3);
+}
+
+body.dark-mode .genz-button:hover {
+    background-color: #8e44ad; /* Slightly darker primary */
+    box-shadow: 0 6px 12px rgba(155, 89, 182, 0.4);
+}
+
+body.dark-mode .genz-form input,
+body.dark-mode .genz-form textarea {
+    background-color: #3b3b5b;
+    border: 1px solid var(--dark-border);
+    color: var(--dark-text);
+}
+
+
+/* General Styles */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    padding: 15px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--light-primary), var(--light-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+body.dark-mode header h1 {
+    background: linear-gradient(45deg, var(--dark-primary), var(--dark-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.vibe-section {
+    margin-bottom: 40px;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+h2 {
+    font-size: 2.2em;
+    color: var(--light-primary);
+    margin-bottom: 25px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+body.dark-mode h2 {
+    color: var(--dark-primary);
+}
+
+p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+/* Gen Z Button Styles */
+.genz-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 50px; /* Pill shape */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.genz-button:active {
+    transform: translateY(2px);
+}
+
+.emoji {
+    font-size: 1.3em;
+}
+
+/* Hero Section */
+#hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.hero-text {
+    max-width: 700px;
+    margin-bottom: 30px;
+}
+
+
+
+.hero-text p {
+    font-size: 1.3em;
+    opacity: 0.9;
+}
+
+.hero-animation {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Video Section */
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-caption {
+    font-style: italic;
+    font-size: 0.95em;
+    opacity: 0.8;
+}
+
+/* File Attachment */
+.file-attachment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.file-attachment p {
+    margin: 0;
+}
+
+.file-info {
+    font-size: 0.9em;
+    opacity: 0.7;
+}
+
+/* Form Styles */
+.genz-form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.genz-form input[type="text"],
+.genz-form input[type="email"],
+.genz-form textarea {
+    width: calc(100% - 20px);
+    padding: 12px 10px;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.genz-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.genz-form input:focus,
+.genz-form textarea:focus {
+    outline: none;
+    border-color: var(--light-primary);
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+}
+
+body.dark-mode .genz-form input:focus,
+body.dark-mode .genz-form textarea:focus {
+    border-color: var(--dark-primary);
+    box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.2);
+}
+
+#form-message {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+}
+
+#form-message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+#form-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Footer */
+footer {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+    opacity: 0.8;
+    margin-top: 40px;
+    border-top: 1px solid var(--light-border);
+}
+
+body.dark-mode footer {
+    border-top: 1px solid var(--dark-border);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    #hero {
+        flex-direction: row;
+        text-align: left;
+        gap: 50px;
+    }
+
+    .hero-text {
+        text-align: left;
+        margin-bottom: 0;
+    }
+
+    .hero-animation {
+        margin-top: 0;
+    }
+}
