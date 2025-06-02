@@ -16,6 +16,7 @@
     --dark-border: #444;
 }
 
+
 body {
     font-family: 'Poppins', sans-serif; /* A popular modern font */
     margin: 0;
@@ -356,5 +357,177 @@ body.dark-mode footer {
 
     .hero-animation {
         margin-top: 0;
+    }
+}
+
+
+/* --- Tara Voice Assistant Styles --- */
+#tara-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    z-index: 1000;
+}
+
+#tara-mic-button {
+    padding: 15px 25px; /* Make it a bit bigger and more prominent */
+    font-size: 1.2em;
+    border-radius: 50px;
+    box-shadow: 0 6px 12px rgba(138, 43, 226, 0.4);
+    background-color: var(--light-primary); /* Use primary color */
+    color: white;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+#tara-mic-button:hover {
+    background-color: #7b24cc; /* Slightly darker primary */
+    box-shadow: 0 8px 16px rgba(138, 43, 226, 0.5);
+    transform: translateY(-2px);
+}
+
+body.dark-mode #tara-mic-button {
+    background-color: var(--dark-primary);
+    box-shadow: 0 6px 12px rgba(155, 89, 182, 0.4);
+}
+
+body.dark-mode #tara-mic-button:hover {
+    background-color: #8e44ad;
+    box-shadow: 0 8px 16px rgba(155, 89, 182, 0.5);
+}
+
+#tara-mic-button.listening {
+    background-color: #28a745; /* Green when listening */
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.5);
+    animation: pulse 1.5s infinite; /* Pulsing effect */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(40, 167, 69, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+}
+
+body.dark-mode #tara-mic-button.listening {
+    background-color: #28a745;
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.5);
+}
+
+#tara-toggle-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--light-card-bg);
+    padding: 10px 15px;
+    border-radius: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode #tara-toggle-options {
+    background-color: var(--dark-card-bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+#listening-mode-label {
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* Toggle Switch Styles (Standard CSS for toggles) */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--light-primary);
+}
+
+body.dark-mode input:checked + .slider {
+    background-color: var(--dark-primary);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--light-primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(16px);
+}
+
+/* Round sliders */
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+#tara-response-box {
+    background-color: var(--light-card-bg);
+    color: var(--light-text);
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 250px;
+    word-wrap: break-word;
+    font-size: 0.95em;
+    text-align: left;
+    transform-origin: bottom right;
+    animation: fadeInScale 0.3s ease-out;
+}
+
+body.dark-mode #tara-response-box {
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
 }
