@@ -6,6 +6,7 @@
     <title>VibeZone - Your Daily Dose of Awesome</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_MEASUREMENT_ID"></script>
@@ -14,11 +15,11 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-ZFC4FNTMH5');
+      gtag('config', 'G-E2BFH1MQ00');
     </script>
-    </head>
+</head>
 <body class="light-mode">
-    
+
     <header>
         <div class="container header-content">
             <h1>VibeZone</h1>
@@ -37,33 +38,31 @@
                     Join the Squad!
                 </button>
             </div>
-           <div class="hero-animation">
-    <lottie-player 
-        src="https://assets2.lottiefiles.com/packages/lf20_tll0j4bb.json" 
-        background="transparent" 
-        speed="1" 
-        style="width: 300px; height: 300px;" 
-        loop 
-        autoplay>
-    </lottie-player>
-</div>
-
-
+            <div class="hero-animation">
+                <lottie-player
+                    src="https://assets2.lottiefiles.com/packages/lf20_tll0j4bb.json"
+                    background="transparent"
+                    speed="1"
+                    style="width: 300px; height: 300px;"
+                    loop
+                    autoplay>
+                </lottie-player>
+            </div>
         </section>
 
-        
-<section id="featured-video" class="vibe-section">
-    <h2>Our Latest Drop (Literally!)</h2>
-    <div class="video-container">
-        <iframe 
-            src="https://www.youtube.com/embed/0YF8vecQWYs" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-    </div>
-    <p class="video-caption">Warning: May cause spontaneous joy. Handle with care. 😜</p>
-</section>
+
+        <section id="featured-video" class="vibe-section">
+            <h2>Our Latest Drop (Literally!)</h2>
+            <div class="video-container">
+                <iframe
+                    src="https://www.youtube.com/embed/0YF8vecQWYs"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p class="video-caption">Warning: May cause spontaneous joy. Handle with care. 😜</p>
+        </section>
 
 
         <section id="download-stuff" class="vibe-section">
@@ -102,10 +101,25 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 VibeZone. Stay vibin', fam. ✌️</p>
+            <p>© 2025 VibeZone. Stay vibin', fam. ✌️</p>
         </div>
     </footer>
 
+    <div id="tara-container">
+        <div id="tara-toggle-options">
+            <label class="switch">
+                <input type="checkbox" id="always-listening-toggle">
+                <span class="slider round"></span>
+            </label>
+            <span id="listening-mode-label">Click-to-Talk</span>
+        </div>
+        <button id="tara-mic-button" class="genz-button">
+            <span class="emoji">🎤</span> Talk to Tara
+        </button>
+        <div id="tara-response-box" class="hidden">
+            <p id="tara-response-text"></p>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
