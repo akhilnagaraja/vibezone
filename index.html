@@ -15,7 +15,7 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-ZFC4FNTMH5');
+      gtag('config', 'G-E2BFH1MQ00');
     </script>
 </head>
 <body class="light-mode">
@@ -23,12 +23,25 @@
     <header>
         <div class="container header-content">
             <h1>VibeZone</h1>
+            <button id="hamburger-menu" class="genz-button">
+    <span class="hamburger-icon"></span>
+    <span class="hamburger-icon"></span>
+    <span class="hamburger-icon"></span>
+</button>
             <button id="theme-toggle" class="genz-button">
                 <span class="emoji">🌞</span> Light Mode
             </button>
         </div>
     </header>
-
+<nav id="side-menu" class="side-menu">
+    <button id="close-side-menu" class="genz-button close-button">✖</button>
+    <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#featured-video">Featured Video</a></li>
+        <li><a href="#download-stuff">Downloads</a></li>
+        <li><a href="#contact-form-section">Contact Us</a></li>
+        </ul>
+</nav>
     <main class="container">
         <section id="hero" class="vibe-section">
             <div class="hero-text">
@@ -106,20 +119,21 @@
     </footer>
 
     <div id="tara-container">
-        <div id="tara-toggle-options">
-            <label class="switch">
-                <input type="checkbox" id="always-listening-toggle">
-                <span class="slider round"></span>
-            </label>
-            <span id="listening-mode-label">Click-to-Talk</span>
+    <div id="tara-chat-window" class="hidden">
+        <div id="tara-chat-history">
+            <div class="chat-message tara-message">
+                <p>Hey VibeZone fam! I'm Tara, your chatbot. Type your questions or try saying 'switch to dark mode'!</p>
+            </div>
         </div>
-        <button id="tara-mic-button" class="genz-button">
-            <span class="emoji">🎤</span> Talk to Tara
-        </button>
-        <div id="tara-response-box" class="hidden">
-            <p id="tara-response-text"></p>
+        <div id="tara-chat-input-area">
+            <input type="text" id="tara-text-input" placeholder="Type your message...">
+            <button id="tara-send-button" class="genz-button">Send</button>
         </div>
     </div>
+    <button id="tara-toggle-chat-button" class="genz-button">
+        <span class="emoji">💬</span> Chat with Tara
+    </button>
+</div>
     <script src="script.js"></script>
 </body>
 </html>
