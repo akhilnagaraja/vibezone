@@ -22,10 +22,11 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s;
+    /* Enhanced theme transition duration and easing */
+    transition: background-color 0.6s ease-in-out, color 0.6s ease-in-out;
 }
 
-/* Light Mode Styles */
+/* Light Mode Styles (Default) */
 body.light-mode {
     background-color: var(--light-bg);
     color: var(--light-text);
@@ -129,6 +130,7 @@ header h1 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    transition: background 0.6s ease-in-out; /* For gradient fill */
 }
 
 body.dark-mode header h1 {
@@ -143,7 +145,8 @@ body.dark-mode header h1 {
     padding: 40px;
     border-radius: 15px;
     text-align: center;
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    /* Apply same smooth transition to sections */
+    transition: background-color 0.6s ease-in-out, color 0.6s ease-in-out, box-shadow 0.6s ease-in-out, border-color 0.6s ease-in-out;
 }
 
 h2 {
@@ -173,7 +176,7 @@ p {
     font-weight: 600;
     border-radius: 50px; /* Pill shape */
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease-in-out; /* Use 'all' for simplicity, or specify properties */
     text-decoration: none;
 }
 
@@ -361,7 +364,127 @@ body.dark-mode footer {
 }
 
 
-/* --- Tara Voice Assistant Styles --- */
+/* --- Hamburger Menu & Side Menu Styles --- */
+
+#hamburger-menu {
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative; /* For z-index to be above other content */
+    z-index: 1100; /* Higher than side-menu when open */
+    margin-left: 15px; /* Adjust spacing from title */
+    width: auto;
+    height: auto;
+    box-shadow: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#hamburger-menu .hamburger-icon {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: var(--light-text); /* Light mode color of the lines */
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+body.dark-mode #hamburger-menu .hamburger-icon {
+    background-color: var(--dark-text); /* Dark mode color of the lines */
+}
+
+
+/* Side Menu Container */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Hidden off-screen to the right initially */
+    width: 280px; /* Width of the side menu */
+    height: 100%;
+    background-color: var(--light-card-bg); /* Light mode background for menu */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    transition: right 0.4s ease-out; /* Smooth slide-in/out transition */
+    z-index: 1050; /* Above main content but below hamburger button */
+    padding-top: 60px; /* Space for close button */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body.dark-mode .side-menu {
+    background-color: var(--dark-card-bg); /* Dark mode background for menu */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.side-menu.open {
+    right: 0; /* Slide into view */
+}
+
+.side-menu .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5em;
+    background: none;
+    color: var(--light-text); /* Light mode close button color */
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s;
+    box-shadow: none; /* Override genz-button shadow */
+}
+
+body.dark-mode .side-menu .close-button {
+    color: var(--dark-text); /* Dark mode close button color */
+}
+
+.side-menu .close-button:hover {
+    transform: rotate(90deg);
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 40px 0 0 0; /* Adjust spacing */
+    width: 100%;
+    text-align: center;
+}
+
+.side-menu ul li {
+    margin-bottom: 25px;
+}
+
+.side-menu ul li a {
+    text-decoration: none;
+    color: var(--light-primary); /* Light mode link color */
+    font-size: 1.5em;
+    font-weight: 600;
+    padding: 10px 20px;
+    display: block;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 8px;
+}
+
+body.dark-mode .side-menu ul li a {
+    color: var(--dark-primary); /* Dark mode link color */
+}
+
+.side-menu ul li a:hover {
+    background-color: rgba(138, 43, 226, 0.1); /* Light mode hover effect */
+    color: var(--light-primary);
+}
+
+body.dark-mode .side-menu ul li a:hover {
+    background-color: rgba(155, 89, 182, 0.1); /* Dark mode hover effect */
+    color: var(--dark-primary);
+}
+
+
+/* --- Tara Chatbot Styles --- */
 #tara-container {
     position: fixed;
     bottom: 30px;
@@ -373,154 +496,194 @@ body.dark-mode footer {
     z-index: 1000;
 }
 
-#tara-mic-button {
-    padding: 15px 25px; /* Make it a bit bigger and more prominent */
+/* Light Mode for Tara Chatbot Toggle Button */
+#tara-toggle-chat-button {
+    padding: 15px 25px;
     font-size: 1.2em;
     border-radius: 50px;
     box-shadow: 0 6px 12px rgba(138, 43, 226, 0.4);
-    background-color: var(--light-primary); /* Use primary color */
+    background-color: var(--light-primary);
     color: white;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
 }
 
-#tara-mic-button:hover {
-    background-color: #7b24cc; /* Slightly darker primary */
+#tara-toggle-chat-button:hover {
+    background-color: #7b24cc;
     box-shadow: 0 8px 16px rgba(138, 43, 226, 0.5);
     transform: translateY(-2px);
 }
 
-body.dark-mode #tara-mic-button {
+/* Dark Mode for Tara Chatbot Toggle Button */
+body.dark-mode #tara-toggle-chat-button {
     background-color: var(--dark-primary);
     box-shadow: 0 6px 12px rgba(155, 89, 182, 0.4);
 }
 
-body.dark-mode #tara-mic-button:hover {
+body.dark-mode #tara-toggle-chat-button:hover {
     background-color: #8e44ad;
     box-shadow: 0 8px 16px rgba(155, 89, 182, 0.5);
 }
 
-#tara-mic-button.listening {
-    background-color: #28a745; /* Green when listening */
-    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.5);
-    animation: pulse 1.5s infinite; /* Pulsing effect */
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(40, 167, 69, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
-}
-
-body.dark-mode #tara-mic-button.listening {
-    background-color: #28a745;
-    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.5);
-}
-
-#tara-toggle-options {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+/* Light Mode for Tara Chat Window */
+#tara-chat-window {
     background-color: var(--light-card-bg);
-    padding: 10px 15px;
-    border-radius: 25px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-}
-
-body.dark-mode #tara-toggle-options {
-    background-color: var(--dark-card-bg);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-#listening-mode-label {
-    font-size: 0.9em;
-    font-weight: 500;
-}
-
-/* Toggle Switch Styles (Standard CSS for toggles) */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 24px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 24px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: var(--light-primary);
-}
-
-body.dark-mode input:checked + .slider {
-    background-color: var(--dark-primary);
-}
-
-input:focus + .slider {
-    box-shadow: 0 0 1px var(--light-primary);
-}
-
-input:checked + .slider:before {
-    transform: translateX(16px);
-}
-
-/* Round sliders */
-.slider.round {
-    border-radius: 24px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
-
-#tara-response-box {
-    background-color: var(--light-card-bg);
-    color: var(--light-text);
-    padding: 15px 20px;
+    border: 1px solid var(--light-border);
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    max-width: 250px;
-    word-wrap: break-word;
-    font-size: 0.95em;
-    text-align: left;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 320px; /* Fixed width for the chat window */
+    height: 450px; /* Fixed height for the chat window */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Ensures content inside doesn't spill */
     transform-origin: bottom right;
     animation: fadeInScale 0.3s ease-out;
 }
 
-body.dark-mode #tara-response-box {
+/* Dark Mode for Tara Chat Window */
+body.dark-mode #tara-chat-window {
     background-color: var(--dark-card-bg);
-    color: var(--dark-text);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--dark-border);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
+#tara-chat-history {
+    flex-grow: 1; /* Takes up available space */
+    padding: 15px;
+    overflow-y: auto; /* Scrollable chat history */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scroll-behavior: smooth; /* Smooth scrolling for new messages */
+}
+
+/* Chat message bubbles (Light Mode defaults) */
+.chat-message {
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chat-message p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.user-message {
+    background-color: var(--light-primary);
+    color: white;
+    align-self: flex-end; /* Align to the right */
+    border-bottom-right-radius: 5px; /* Tweak for chat bubble look */
+}
+
+/* Dark Mode for User Message */
+body.dark-mode .user-message {
+    background-color: var(--dark-primary);
+}
+
+.tara-message {
+    background-color: var(--light-secondary);
+    color: white;
+    align-self: flex-start; /* Align to the left */
+    border-bottom-left-radius: 5px; /* Tweak for chat bubble look */
+}
+
+/* Dark Mode for Tara Message */
+body.dark-mode .tara-message {
+    background-color: var(--dark-secondary);
+}
+
+/* Light Mode for Chat Input Area */
+#tara-chat-input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid var(--light-border);
+    background-color: var(--light-card-bg);
+}
+
+/* Dark Mode for Chat Input Area */
+body.dark-mode #tara-chat-input-area {
+    border-top: 1px solid var(--dark-border);
+    background-color: var(--dark-card-bg);
+}
+
+/* Light Mode for Text Input Field */
+#tara-text-input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--light-border);
+    border-radius: 25px;
+    font-size: 1em;
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    margin-right: 10px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Dark Mode for Text Input Field */
+body.dark-mode #tara-text-input {
+    background-color: var(--dark-bg);
+    border: 1px solid var(--dark-border);
+    color: var(--dark-text);
+}
+
+/* Focus styles for Text Input Field */
+#tara-text-input:focus {
+    border-color: var(--light-primary);
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+}
+
+body.dark-mode #tara-text-input:focus {
+    border-color: var(--dark-primary);
+    box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.2);
+}
+
+#tara-send-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 25px;
+    /* Inherits genz-button styles, ensure it looks good */
+}
+
+/* Loading indicator (Light Mode defaults) */
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 0, 0.05); /* Semi-transparent black for light mode */
+    border-radius: 10px;
+    font-size: 0.9em;
+    color: var(--light-text);
+    align-self: flex-start;
+}
+
+/* Dark Mode for Loading Indicator */
+body.dark-mode .loading-indicator {
+    background-color: rgba(255, 255, 255, 0.05); /* Semi-transparent white for dark mode */
+    color: var(--dark-text);
+}
+
+.loading-indicator::after {
+    content: '...';
+    animation: loadingDots 1s infinite steps(3);
+}
+
+@keyframes loadingDots {
+    0% { content: '.'; }
+    33% { content: '..'; }
+    66% { content: '...'; }
+}
+
+/* General hidden class */
+.hidden {
+    display: none !important;
+}
+
+/* Fade in scale animation (reused from previous Tara response box) */
 @keyframes fadeInScale {
     from {
         opacity: 0;
