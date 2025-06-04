@@ -90,7 +90,7 @@ body.dark-mode .genz-button {
 
 body.dark-mode .genz-button:hover {
     background-color: #8e44ad; /* Slightly darker primary */
-    box-shadow: 0 6px 12px rgba(155, 89, 182, 0.4);
+    box-shadow: 0 6px 12px rgba(155, 89, 182, 0.5);
 }
 
 body.dark-mode .genz-form input,
@@ -328,7 +328,7 @@ body.dark-mode .genz-form textarea:focus {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* Footer */
