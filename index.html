@@ -3,162 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="VibeZone - Your ultimate digital hub for Gen Z trends, tech, and creativity.">
-    <meta name="keywords" content="Gen Z, digital, tech, trends, creativity, community, innovation">
-    <meta name="author" content="VibeZone Team">
-    <title>VibeZone - Your Digital Hub</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
+    <title>VibeZone - Your Daily Dose of Awesome</title>
     <link rel="stylesheet" href="style.css">
-
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1R2KXVQ4YT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-1R2KXVQ4YT');
-</script>
-</head>
-<body>
-
-    <div class="lottie-background">
-        <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_gwmhylm3.json" background="transparent" speed="1" loop autoplay></lottie-player>
-        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_qejx0a.json" background="transparent" speed="1" loop autoplay></lottie-player>
-        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_e3q0w63k.json" background="transparent" speed="1" loop autoplay></lottiffiles-player>
-        <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_o0n55v.json" background="transparent" speed="1" loop autoplay></lottie-player>
-    </div>
-
+      gtag('config', 'G-E2BFH1MQ00');
+    </script>
+    </head>
+<body class="light-mode">
+    
     <header>
-        <div class="container">
-            <h1 class="logo">VibeZone</h1>
-            <nav>
-                <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#contact-form-section">Contact</a></li>
-                </ul>
-            </nav>
-            <button id="theme-toggle" class="theme-toggle">
+        <div class="container header-content">
+            <h1>VibeZone</h1>
+            <button id="theme-toggle" class="genz-button">
                 <span class="emoji">🌞</span> Light Mode
             </button>
         </div>
     </header>
 
-    <main>
-        <section id="hero" class="hero-section">
-            <div class="container">
-                <div class="hero-content">
-                    <h2>Unleash Your Digital Vibe</h2>
-                    <p>Connect, create, and conquer the digital world with VibeZone.</p>
-                    <a href="#" class="genz-button">Join the Vibe Now!</a>
+    <main class="container">
+        <section id="hero" class="vibe-section">
+            <div class="hero-text">
+                <h2>Level Up Your Day, Every Day.</h2>
+                <p>Dive into a world where good vibes are mandatory and boredom is canceled. ✨</p>
+                <button class="genz-button" onclick="document.getElementById('contact-form-section').scrollIntoView({ behavior: 'smooth' });">
+                    Join the Squad!
+                </button>
+            </div>
+           <div class="hero-animation">
+    <lottie-player
+                    src="https://assets2.lottiefiles.com/packages/lf20_tll0j4bb.json"
+                    background="transparent"
+                    speed="1"
+                    style="width: 300px; height: 300px;"
+                    loop
+                    autoplay>
+                </lottie-player>
+</div>
+
+
+        </section>
+
+        
+<section id="featured-video" class="vibe-section">
+    <h2>Our Latest Drop (Literally!)</h2>
+    <div class="video-container">
+        <iframe 
+            src="https://www.youtube.com/embed/0YF8vecQWYs" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+    <p class="video-caption">Warning: May cause spontaneous joy. Handle with care. 😜</p>
+</section>
+
+
+        <section id="download-stuff" class="vibe-section">
+            <h2>Need Some Digital Goodies?</h2>
+            <div class="file-attachment">
+                <p>Grab our exclusive "VibeCheck Starter Pack" – it's lit! 🔥</p>
+                <a href="sample-document.pdf" download="VibeCheck_Starter_Pack.pdf" class="genz-button">
+                    Download Now!
+                </a>
+                <p class="file-info">File size: 2.5 MB (PDF)</p>
+            </div>
+        </section>
+
+        <section id="contact-form-section" class="vibe-section">
+            <h2>Slide into Our DMs (aka, Contact Form)</h2>
+            <form id="contact-form" class="genz-form">
+                <div class="form-group">
+                    <label for="name">Your Gamer Tag:</label>
+                    <input type="text" id="name" name="name" placeholder="E.g., VibeMaster69" required>
                 </div>
-            </div>
-        </section>
-
-        <section id="about" class="about-section">
-            <div class="container">
-                <h2>About Us</h2>
-                <p>VibeZone is where Gen Z thrives. We're a dynamic platform dedicated to fostering creativity, sharing innovative tech, and building a community that resonates with your digital lifestyle. From trending topics to deep dives into future tech, we've got your back.</p>
-                <p>Our mission is to empower young minds to explore, learn, and express themselves in a vibrant, supportive environment. Join us and discover your next big thing.</p>
-            </div>
-        </section>
-
-        <section id="services" class="services-section">
-            <div class="container">
-                <h2>Our Services</h2>
-                <div class="service-cards">
-                    <div class="card">
-                        <h3>Content Creation Hub</h3>
-                        <p>Tools and inspiration to craft viral videos, engaging posts, and unique digital art.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Tech & Innovation Insights</h3>
-                        <p>Stay ahead with the latest in AI, blockchain, gaming, and sustainable tech.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Community & Networking</h3>
-                        <p>Connect with like-minded individuals, collaborate on projects, and build your network.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Skill Development Workshops</h3>
-                        <p>Level up your digital skills with expert-led workshops on coding, design, and marketing.</p>
-                    </div>
+                <div class="form-group">
+                    <label for="email">Your Email (no spam, pinky swear):</label>
+                    <input type="email" id="email" name="email" placeholder="E.g., inbox@vibezone.com" required>
                 </div>
-            </div>
-        </section>
-
-        <section id="featured-video" class="featured-video-section">
-            <div class="container">
-                <h2>Our Latest Vibe</h2>
-                <div class="video-wrapper">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=abcdefghi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="form-group">
+                    <label for="message">What's on your mind?</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell us your wildest dreams or just say hi! 🤙"></textarea>
                 </div>
-                <p class="video-caption">Check out our latest video: "HOW GEN Z brain works 🧠😂"</p>
-            </div>
+                <button type="submit" class="genz-button">
+                    Send It!
+                </button>
+            </form>
+            <div id="form-message" class="hidden"></div>
         </section>
-
-        <section id="download-stuff" class="download-section">
-            <div class="container">
-                <h2>Ready to Level Up?</h2>
-                <p>Download our exclusive VibeCheck Starter Pack - your guide to dominating the digital space!</p>
-                <a href="assets/VibeCheck_Starter_Pack.pdf" download="VibeCheck_Starter_Pack.pdf" class="genz-button download-button">Download Now!</a>
-                <p class="small-text">Includes tips, tricks, and free templates. File size: 2.5 MB.</p>
-            </div>
-        </section>
-
-        <section id="contact-form-section" class="contact-form-section">
-            <div class="container">
-                <h2>Drop Us a Line</h2>
-                <p>Got questions, suggestions, or just wanna say hey? Reach out!</p>
-                <form id="contact-form" class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Your Name:</label>
-                        <input type="text" id="name" name="name" required placeholder="What's your name?">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email:</label>
-                        <input type="email" id="email" name="email" required placeholder="Your digital address">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message:</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Spill the tea..."></textarea>
-                    </div>
-                    <button type="submit" class="genz-button">Send Vibe</button>
-                    <p id="form-message" class="hidden"></p>
-                </form>
-            </div>
-        </section>
-
-        <div class="tara-voice-assistant">
-            <button id="tara-mic-button" class="tara-button">
-                <span class="emoji">🎤</span> Talk to Tara
-            </button>
-            <div class="tara-mode-toggle">
-                <input type="checkbox" id="always-listening-toggle" class="toggle-switch">
-                <label for="always-listening-toggle" id="listening-mode-label">Click-to-Talk</label>
-            </div>
-            <div id="tara-response-box" class="tara-response-box hidden">
-                <p id="tara-response-text">Tara's response will appear here...</p>
-            </div>
-        </div>
-
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 VibeZone. All rights reserved. Keep your vibe high. ✨</p>
-            <div class="social-links">
-                <a href="#" aria-label="Facebook"><img src="assets/facebook-icon.png" alt="Facebook"></a>
-                <a href="#" aria-label="Instagram"><img src="assets/instagram-icon.png" alt="Instagram"></a>
-                <a href="#" aria-label="Twitter"><img src="assets/twitter-icon.png" alt="Twitter"></a>
-            </div>
+            <p>&copy; 2025 VibeZone. Stay vibin', fam. ✌️</p>
         </div>
     </footer>
 
