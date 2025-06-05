@@ -11,23 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
             body.classList.remove('light-mode');
             themeToggle.innerHTML = '<span class="emoji">🌙</span> Dark Mode';
             localStorage.setItem('theme', 'dark');
-            // GA4 event for theme change to dark mode
-            if (typeof gtag === 'function') {
-                gtag('event', 'theme_change', {
-                    'theme_name': 'dark_mode'
-                });
-            }
+            // GA4 event for theme change to dark mode via dataLayer.push
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'theme_change_custom', // Use a custom event name for dataLayer
+                'theme_name': 'dark_mode'
+            });
         } else {
             body.classList.add('light-mode');
             body.classList.remove('dark-mode');
             themeToggle.innerHTML = '<span class="emoji">🌞</span> Light Mode';
             localStorage.setItem('theme', 'light');
-            // GA4 event for theme change to light mode (THIS WAS MISSING)
-            if (typeof gtag === 'function') {
-                gtag('event', 'theme_change', {
-                    'theme_name': 'light_mode'
-                });
-            }
+            // GA4 event for theme change to light mode via dataLayer.push
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'theme_change_custom', // Use a custom event name for dataLayer
+                'theme_name': 'light_mode'
+            });
         }
     }
 
@@ -59,41 +59,41 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
 
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
 
         if (!name || !email || !message) {
             formMessage.className = 'error';
             formMessage.textContent = 'Oops! Please fill out all fields. 🙏';
-            // GA4 event for form error: missing fields
-            if (typeof gtag === 'function') {
-                gtag('event', 'form_submission', {
-                    'form_name': 'contact_form',
-                    'form_status': 'error',
-                    'error_type': 'missing_fields'
-                });
-            }
+            // GA4 event for form error: missing fields via dataLayer.push
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'form_submission_custom', // Use a custom event name for dataLayer
+                'form_name': 'contact_form',
+                'form_status': 'error',
+                'error_type': 'missing_fields'
+            });
         } else if (!emailPattern.test(email)) {
             formMessage.className = 'error';
             formMessage.textContent = 'Please enter a valid email address. 📧';
-            // GA4 event for form error: invalid email (THIS WAS MISSING)
-            if (typeof gtag === 'function') {
-                gtag('event', 'form_submission', {
-                    'form_name': 'contact_form',
-                    'form_status': 'error',
-                    'error_type': 'invalid_email'
-                });
-            }
+            // GA4 event for form error: invalid email via dataLayer.push
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'form_submission_custom', // Use a custom event name for dataLayer
+                'form_name': 'contact_form',
+                'form_status': 'error',
+                'error_type': 'invalid_email'
+            });
         } else {
             formMessage.className = 'success';
             formMessage.textContent = 'Thanks for reaching out! We\'ll hit you back soon. 🔥';
             contactForm.reset();
-            // GA4 event for successful form submission (THIS WAS MISSING)
-            if (typeof gtag === 'function') {
-                gtag('event', 'form_submission', {
-                    'form_name': 'contact_form',
-                    'form_status': 'success'
-                });
-            }
+            // GA4 event for successful form submission via dataLayer.push
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'form_submission_custom', // Use a custom event name for dataLayer
+                'form_name': 'contact_form',
+                'form_status': 'success'
+            });
         }
 
         formMessage.classList.remove('hidden');
@@ -103,16 +103,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     });
 
-    // Download Button Click Tracking
+    // Download Button Click Tracking via dataLayer.push
     const downloadButton = document.querySelector('a[download="VibeCheck_Starter_Pack.pdf"]');
     if (downloadButton) {
         downloadButton.addEventListener('click', () => {
-            if (typeof gtag === 'function') {
-                gtag('event', 'file_download', {
-                    'file_name': 'VibeCheck_Starter_Pack.pdf',
-                    'file_type': 'pdf'
-                });
-            }
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'file_download_custom', // Use a custom event name for dataLayer
+                'file_name': 'VibeCheck_Starter_Pack.pdf',
+                'file_type': 'pdf',
+                'page_location': window.location.href, // Good to include context
+                'page_title': document.title
+            });
         });
     }
 });
