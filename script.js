@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
             body.classList.remove('light-mode');
             themeToggle.innerHTML = '<span class="emoji">🌙</span> Dark Mode';
             localStorage.setItem('theme', 'dark');
-              if (typeof gtag === 'function') {
+            // GA4 event for theme change to dark mode
+            if (typeof gtag === 'function') {
                 gtag('event', 'theme_change', {
                     'theme_name': 'dark_mode'
                 });
@@ -21,6 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
             body.classList.remove('dark-mode');
             themeToggle.innerHTML = '<span class="emoji">🌞</span> Light Mode';
             localStorage.setItem('theme', 'light');
+            // GA4 event for theme change to light mode (THIS WAS MISSING)
+            if (typeof gtag === 'function') {
+                gtag('event', 'theme_change', {
+                    'theme_name': 'light_mode'
+                });
+            }
         }
     }
 
@@ -57,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!name || !email || !message) {
             formMessage.className = 'error';
             formMessage.textContent = 'Oops! Please fill out all fields. 🙏';
+            // GA4 event for form error: missing fields
             if (typeof gtag === 'function') {
                 gtag('event', 'form_submission', {
                     'form_name': 'contact_form',
@@ -67,10 +75,25 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (!emailPattern.test(email)) {
             formMessage.className = 'error';
             formMessage.textContent = 'Please enter a valid email address. 📧';
+            // GA4 event for form error: invalid email (THIS WAS MISSING)
+            if (typeof gtag === 'function') {
+                gtag('event', 'form_submission', {
+                    'form_name': 'contact_form',
+                    'form_status': 'error',
+                    'error_type': 'invalid_email'
+                });
+            }
         } else {
             formMessage.className = 'success';
             formMessage.textContent = 'Thanks for reaching out! We\'ll hit you back soon. 🔥';
             contactForm.reset();
+            // GA4 event for successful form submission (THIS WAS MISSING)
+            if (typeof gtag === 'function') {
+                gtag('event', 'form_submission', {
+                    'form_name': 'contact_form',
+                    'form_status': 'success'
+                });
+            }
         }
 
         formMessage.classList.remove('hidden');
@@ -79,6 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
             formMessage.classList.add('hidden');
         }, 5000);
     });
+
+    // Download Button Click Tracking
     const downloadButton = document.querySelector('a[download="VibeCheck_Starter_Pack.pdf"]');
     if (downloadButton) {
         downloadButton.addEventListener('click', () => {
