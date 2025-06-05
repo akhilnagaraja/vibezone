@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
             body.classList.remove('light-mode');
             themeToggle.innerHTML = '<span class="emoji">🌙</span> Dark Mode';
             localStorage.setItem('theme', 'dark');
+              if (typeof gtag === 'function') {
+                gtag('event', 'theme_change', {
+                    'theme_name': 'dark_mode'
+                });
+            }
         } else {
             body.classList.add('light-mode');
             body.classList.remove('dark-mode');
@@ -52,6 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!name || !email || !message) {
             formMessage.className = 'error';
             formMessage.textContent = 'Oops! Please fill out all fields. 🙏';
+            if (typeof gtag === 'function') {
+                gtag('event', 'form_submission', {
+                    'form_name': 'contact_form',
+                    'form_status': 'error',
+                    'error_type': 'missing_fields'
+                });
+            }
         } else if (!emailPattern.test(email)) {
             formMessage.className = 'error';
             formMessage.textContent = 'Please enter a valid email address. 📧';
@@ -67,4 +79,15 @@ document.addEventListener('DOMContentLoaded', () => {
             formMessage.classList.add('hidden');
         }, 5000);
     });
+    const downloadButton = document.querySelector('a[download="VibeCheck_Starter_Pack.pdf"]');
+    if (downloadButton) {
+        downloadButton.addEventListener('click', () => {
+            if (typeof gtag === 'function') {
+                gtag('event', 'file_download', {
+                    'file_name': 'VibeCheck_Starter_Pack.pdf',
+                    'file_type': 'pdf'
+                });
+            }
+        });
+    }
 });
