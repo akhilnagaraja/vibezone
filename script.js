@@ -59,8 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
 
-        const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
-
+        const emailPattern = /^(([^<>()[\]\\.,;:\\s@"]+(\\.[^<>()[\]\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$/;
         if (!name || !email || !message) {
             formMessage.className = 'error';
             formMessage.textContent = 'Oops! Please fill out all fields. 🙏';
