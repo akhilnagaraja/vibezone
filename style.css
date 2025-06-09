@@ -22,8 +22,12 @@ body {
     padding: 0;
     line-height: 1.6;
     transition: background-color 0.3s, color 0.3s;
-}
+    cursor: url('https://img.icons8.com/color/20/blue-pointer.png'), auto; /* Try changing size to 32 here if Icons8 supports it via URL param */
 
+}
+button, a, input, textarea {
+    cursor: url('https://img.icons8.com/officel/25/minecraft-shovel.png'), pointer !important; /* Example: A "zany face" emoji on interactive elements */
+} 
 /* Light Mode Styles */
 body.light-mode {
     background-color: var(--light-bg);
@@ -143,8 +147,27 @@ body.dark-mode header h1 {
     border-radius: 15px;
     text-align: center;
     transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        transition: all 0.4s ease-in-out; /* Smooth transition for all properties */
+
+}
+.vibe-section:hover {
+    transform: translateY(-10px) scale(1.01); /* Lift up and slightly enlarge */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    /* Add a subtle tilt for fun */
+    transform: translateY(-10px) scale(1.01) rotateZ(1deg); /* Slight rotation */
 }
 
+/* Enhance existing button hover for more pop */
+.genz-button:hover {
+    transform: translateY(-3px) scale(1.05); /* Lift up and slightly larger */
+    box-shadow: 0 8px 16px rgba(138, 43, 226, 0.5); /* Stronger glow for light mode */
+    background-color: #7b24cc; /* Ensure a consistent hover background for light mode */
+}
+
+body.dark-mode .genz-button:hover {
+    box-shadow: 0 8px 16px rgba(155, 89, 182, 0.5); /* Stronger glow for dark mode */
+    background-color: #8e44ad; /* Ensure a consistent hover background for dark mode */
+}
 h2 {
     font-size: 2.2em;
     color: var(--light-primary);
@@ -324,7 +347,7 @@ body.dark-mode .genz-form textarea:focus {
 }
 
 .hidden {
-    display: none;
+    display: none !important; /* Keep !important for utility class */
 }
 
 /* Footer */
